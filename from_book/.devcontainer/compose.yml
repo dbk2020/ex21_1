@@ -1,0 +1,17 @@
+services:
+  python:
+    build:
+      # ビルドコンテキスト: compose.yml から見て ../python ディレクトリ
+      context: ../python
+    
+    # コンテナ内の作業ディレクトリ
+    working_dir: /app
+    
+    volumes:
+      # ホストの python ディレクトリ全体をコンテナの /app にマウント
+      # これにより、ホストでのコード変更がコンテナ内に即時反映される (開発用)
+      - ../python:/app
+      
+    # コンテナを開発用に起動し続けるためのコマンド
+    # Dockerfile の CMD を上書き
+    command: sleep infinity
